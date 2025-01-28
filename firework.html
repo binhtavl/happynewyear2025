@@ -52,6 +52,25 @@
             line-height: 1.5;
             font-weight: bold;
         }
+        #line4, #line5 {
+            margin: 0; /* Loại bỏ khoảng cách giữa line4 và line5 */
+            padding: 0; /* Loại bỏ padding nếu có */
+            opacity: 1; /* Đảm bảo phần tử luôn hiển thị */
+            animation: pulse 2s infinite; /* Lặp lại vô hạn mỗi 2 giây */
+            
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1); /* Ban đầu không thay đổi kích thước */
+            }
+            50% {
+                transform: scale(1.1); /* Phóng to 10% */
+            }
+            100% {
+                transform: scale(1); /* Trở về kích thước ban đầu */
+            }
+        }
     </style>
 </head>
 
@@ -63,6 +82,7 @@
             <p id="line2"></p>
             <p id="line3"></p>
             <p id="line4"></p>
+            <p id="line5"></p>
         </div>
     </div>
 
@@ -142,11 +162,15 @@
         initAnimate();
 
         window.onload = function () {
+            // Phát nhạc ngay khi trang web tải xong
+            fireworkSound.play(); 
+
             setTimeout(function () {
                 document.querySelector('.button-container').style.display = 'block';
                 showText();
             }, 0);
         };
+
 
         function showText() {
             setTimeout(function () {
@@ -156,7 +180,11 @@
                             setTimeout(function () {
                                 typeText('line3', 'Chúc thầy một năm mới thành công và hạnh phúc!', 70, function () {
                                     setTimeout(function () {
-                                        typeText('line4', 'Tân niên lai đáo đa phú quý. Xuân đến an khương vạn thọ tường.', 70, function () {
+                                        typeText('line4', '"Tân niên lai đáo đa phú quý,', 70, function () {
+                                            setTimeout(function () {
+                                                typeText('line5', 'Xuân đến an khương vạn thọ tường."', 70, function() {
+                                                })
+                                            })
                                         });
                                     }, 500);
                                 });
